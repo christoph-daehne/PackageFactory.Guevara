@@ -14,7 +14,7 @@ set -e
 
 # Build the assets and execute the integration tests.
 if [ -n "$SAUCE_ACCESS_KEY" ]; then
-    npm run selenium:init
+    npm run selenium:init &
     npm run build && npm install -g codeceptjs
     cd Tests/TestCodeceptIo && codeceptjs run --steps
 fi
