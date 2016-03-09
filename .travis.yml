@@ -41,7 +41,12 @@ env:
 # Install nvm, the node depdencies and setup the some env variables.
 #
 before_install:
+ #- openssl aes-256-cbc -K $encrypted_a5d3ccfec37e_key -iv $encrypted_a5d3ccfec37e_iv -in Packages/Application/PackageFactory.Guevara/codecept.json.enc -out Packages/Application/PackageFactory.Guevara/codecept.json -d
   # Add the oAuth token to git to avoid errors with composer because of https://github.com/composer/composer/issues/1314
+  - "export DISPLAY=:99.0"
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  - sleep 3 # give xvfb some time to start
+  
   - if [ -n "$GITHUB_OAUTH_TOKEN" ]; then composer config github-oauth.github.com ${GITHUB_OAUTH_TOKEN}; fi;
 
   # Install `nvm` since we are running in a php infrastructure based VM on TravisCI.
