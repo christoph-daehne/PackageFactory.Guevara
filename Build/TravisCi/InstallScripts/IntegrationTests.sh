@@ -32,7 +32,7 @@ mysql -e 'create database neos collate utf8_unicode_ci;'
 ./flow site:import --package-key=TYPO3.NeosDemoTypo3Org
 
 # Create the demo backend user.
-./flow user:create --username=johndoe --password=demo --first-name=John --last-name=Doe --roles=TYPO3.Neos:Administrator &
+./flow user:create --username=admin --password=password --first-name=John --last-name=Doe --roles=TYPO3.Neos:Administrator &
 
 # Start the development server on which the integration tests will act on.
 ./flow server:run --port 8081 &
